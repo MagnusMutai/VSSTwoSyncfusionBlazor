@@ -8,6 +8,7 @@ using VSSTwoSyncfusionBlazor.Components;
 using VSSTwoSyncfusionBlazor.Components.Account;
 using VSSTwoSyncfusionBlazor.Data;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.Authentication.WebAssembly.Msal;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +53,12 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+
+builder.Services.AddMsalAuthentication(options =>
+{
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+    options.ProviderOptions.DefaultAccessTokenScopes.Add("api://66807dad-ad8c-4a7c-ac6d-5b5f01fa760f/AccessMS");
+});
 
 var app = builder.Build();
 //Register Syncfusion license https://help.syncfusion.com/common/essential-studio/licensing/how-to-generate
