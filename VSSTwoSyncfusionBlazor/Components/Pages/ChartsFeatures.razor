@@ -1,0 +1,59 @@
+﻿@page "/charts-features"
+@rendermode InteractiveServer
+@using Syncfusion.Blazor.Charts
+<PageTitle>Charts</PageTitle>
+<h2>Charts</h2>
+<br/>
+<div id = "ControlRegion">
+ <SfChart Theme="Theme.Fluent"   >
+              <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category">  </ChartPrimaryXAxis>                
+        <ChartSeriesCollection>  
+			  <ChartSeries DataSource="@Sales" XName="Month" YName="SalesValue" Size="Size" Type="Syncfusion.Blazor.Charts.ChartSeriesType.Bubble">  
+			  </ChartSeries>      
+			  </ChartSeriesCollection>
+        <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
+        <ChartZoomSettings EnableSelectionZooming="true"></ChartZoomSettings>
+    </SfChart>
+</div>
+<br/>
+<div>
+  <h3>Selected Features:</h3>
+    <ul class="ulstyle">
+      <li class="list"> Chart Types - Bubble</li>
+      <li class="list"> Zooming</li>
+      <li class="list"> Tooltip</li>
+      <li class="list"> Theme - Fluent</li>
+    </ul>
+</div>
+<br/>
+<style>
+    .ulstyle {
+        margin: 0px;
+        padding-left: 20px;
+        display: inline-block;
+    }
+    .list {
+    float: left;
+    line-height: 20px;
+    margin: 10px;
+    min-width: 200px;
+    }
+</style>
+@code{
+    public class SalesInfo
+    {
+        public double Month { get; set; }
+        public double SalesValue { get; set; }
+        public double Size { get; set; }
+    }
+    public List<SalesInfo> Sales = new List<SalesInfo>
+	  {
+        new SalesInfo { Month = 1, SalesValue = 35, Size = 2 },
+        new SalesInfo { Month = 2, SalesValue = 28, Size = 1 },
+        new SalesInfo { Month = 3, SalesValue = 34, Size = 3 },
+        new SalesInfo { Month = 4, SalesValue = 32, Size = 2 },
+        new SalesInfo { Month = 5, SalesValue = 40, Size = 5 },
+        new SalesInfo { Month = 6, SalesValue = 32, Size = 2 },
+        new SalesInfo { Month = 7, SalesValue = 35, Size = 2 }
+    };
+}
