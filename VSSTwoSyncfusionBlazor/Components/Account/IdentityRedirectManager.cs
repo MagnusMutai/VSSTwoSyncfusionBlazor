@@ -18,7 +18,7 @@ namespace VSSTwoSyncfusionBlazor.Components.Account
         [DoesNotReturn]
         public void RedirectTo(string? uri)
         {
-            uri ??= "/signin-google";
+            uri ??= "";
 
             // Prevent open redirects.
             if (!Uri.IsWellFormedUriString(uri, UriKind.Relative))
